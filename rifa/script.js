@@ -82,7 +82,6 @@ telefone: ${tel.value}`
 
 function sortear(){
     const aleatorio = rifas[Math.floor(Math.random() * rifas.length)];
-    alert(rifas)
-    alert(`O vencedor é ${aleatorio}`)
+    alert(`O vencedor é o ${aleatorio}`)
 }
 // sorteia o vencedor.

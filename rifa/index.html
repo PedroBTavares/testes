@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rifas e vendas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <Header>
+        <h1>Sorteios e vendas</h1>
+        <p>
+            Esta página é destinada para auxilio na venda e sorteios de rifas e na venda de produtos.
+        </p>
+    </Header>
+    <main>
+        <section id="sr">
+                <h2>Rifas</h2>
+                <p>
+                    Adicione a rifa vendida.
+                    <br>
+                    <input type="button" value="Adicionar" onclick="adicionar()" id="ad" class="botao">
+                </p>
+                
+                <div id="adreg">
+                    <p>
+                        insira o nome do comprador:
+                        <input type="text" name="nome" id="nome">
+                        <br>
+                        seu telefone:
+                        <input type="text" name="tel" id="tel">
+                        <br>
+                        <!--ou série:
+                        <input type="text" name="serie" id="serie">
+                        <br>-->
+                        e quantidade de rifas: <input type="number" name="numr" id="numr">
+                        <br>
+                        <input type="button" value="concluir" onclick="concluir()" class="botao"></span>
+                    </p>
+                </div>
+                <p><input type="button" value="Exibir rifas vendidas" onclick="exibir()" id="ex" class="botao"></p>
+
+                <ul id="adrif"></ul>
+
+                <p><input type="button" value="sortear" onclick="sortear()" class="botao"></p>
+        </section>
+        <section id="sv">
+            <h2>Vendas</h2>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

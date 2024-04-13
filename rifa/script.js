@@ -30,7 +30,7 @@ function adicionar (){
 }
 // expõe e esconde as ferramentas para registro de rifas.
 
-function exibir(){
+function exibir (){
     if (adrif.style.display == 'none'){
         ex.value = 'Esconder rifas vendidas'
         adrif.style.display = 'block'
@@ -60,17 +60,8 @@ telefone: ${tel.value}`
         )
         }
         const li = document.createElement('li')
-        li.innerText = `Comprador: ${nome.value}
-        Telefone: ${tel.value}
-        ${numr} rifas compradas.`
+        li.innerText = `Comprador: ${nome.value}, Telefone: ${tel.value} - ${numr} rifas compradas.`
         adrif.appendChild(li)
-
-        const excluir = document.createElement('input')
-        excluir.value = 'Exculir'
-        excluir.style.display = 'block'
-        excluir.style.textAlign = 'center'
-        excluir.classList.add('botao')
-        li.appendChild(excluir)
 
         nome.value = ''
         tel.value = ''
@@ -80,8 +71,17 @@ telefone: ${tel.value}`
 }
 // faz todo o processo interno de registro.
 
-function sortear(){
+function excluir (){
+    const lis = adrif.querySelectorAll('*')
+    alert(lis.length)
+    lis.forEach((li) => {
+        li.classList.add('selecionado')
+        alert(li)
+    })
+}
+
+function sortear (){
     const aleatorio = rifas[Math.floor(Math.random() * rifas.length)];
     alert(`O vencedor é o ${aleatorio}`)
 }
-// sorteia o vencedor.
+// sorteia o vencedor

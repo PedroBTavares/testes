@@ -9,6 +9,7 @@ adrif.style.display = 'none'
 // conteúdo dos botões.
 
 const rifas = []
+const lis = []
 
 function adicionar (){
     if (adreg.style.display == 'none'){
@@ -60,8 +61,25 @@ telefone: ${tel.value}`
         )
         }
         const li = document.createElement('li')
-        li.innerText = `Comprador: ${nome.value}, Telefone: ${tel.value} - ${numr} rifas compradas.`
+        li.innerText = `Comprador: ${nome.value}
+Telefone: ${tel.value}
+${numr} rifas compradas.`
         adrif.appendChild(li)
+        adrif.classList.add('li')
+        //adiciona um li
+
+        lis.push(li)
+        // adiciona os li ao array lis
+
+        const indiceLi = lis.indexOf(li)
+        const rifa = rifas[rifas.length - 1]
+        const indiceRifa = rifas.indexOf(rifa)
+        // pega os índices necessários
+
+        lis.splice(indiceLi + 1, 0, indiceRifa)
+        lis.splice(indiceLi + 2, 0, numr)
+        // adiciona o indice do valor do li que está no array rifa e o número de rifas compradas ao array de lis
+        alert(lis)
 
         nome.value = ''
         tel.value = ''
@@ -72,13 +90,16 @@ telefone: ${tel.value}`
 // faz todo o processo interno de registro.
 
 function excluir (){
-    const lis = adrif.querySelectorAll('*')
+    const lis = document.querySelectorAll('li')
     alert(lis.length)
     lis.forEach((li) => {
         li.classList.add('selecionado')
-        alert(li)
     })
 }
+/*const lis = document.querySelectorAll('li')
+lis.forEach((li) => {
+    li.addEventListener('click', selecionar())
+})*/
 
 function sortear (){
     const aleatorio = rifas[Math.floor(Math.random() * rifas.length)];

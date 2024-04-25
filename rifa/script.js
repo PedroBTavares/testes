@@ -72,8 +72,8 @@ ${numr} rifas compradas.`
         // adiciona os li ao array lis
 
         const indiceLi = lis.indexOf(li)
-        const rifa = rifas[rifas.length - 1]
-        const indiceRifa = rifas.indexOf(rifa)
+        //const rifa = rifas[]
+        const indiceRifa = rifas.length - numr //rifas.indexOf(rifa)
         // pega os índices necessários
 
         lis.splice(indiceLi + 1, 0, indiceRifa)
@@ -89,6 +89,11 @@ ${numr} rifas compradas.`
 }
 // faz todo o processo interno de registro.
 
+const nodeLis = document.querySelectorAll('li')
+nodeLis.forEach((li) => {
+    alert("li")
+})
+
 function excluir (){
     const lis = document.querySelectorAll('li')
     alert(lis.length)
@@ -96,11 +101,6 @@ function excluir (){
         li.classList.add('selecionado')
     })
 }
-/*const lis = document.querySelectorAll('li')
-lis.forEach((li) => {
-    li.addEventListener('click', selecionar())
-})*/
-
 function sortear (){
     const aleatorio = rifas[Math.floor(Math.random() * rifas.length)];
     alert(`O vencedor é o ${aleatorio}`)

@@ -6,6 +6,7 @@ const adreg = document.getElementById('adreg')
 adreg.style.display = 'none'
 const adrif = document.getElementById('adrif')
 adrif.style.display = 'none'
+const exrif = document.getElementById('exrif')
 // conteúdo dos botões.
 
 const rifas = []
@@ -79,7 +80,6 @@ ${numr} rifas compradas.`
         lis.splice(indiceLi + 1, 0, indiceRifa)
         lis.splice(indiceLi + 2, 0, numr)
         // adiciona o indice do valor do li que está no array rifa e o número de rifas compradas ao array de lis
-        alert(lis)
 
         nome.value = ''
         tel.value = ''
@@ -89,18 +89,39 @@ ${numr} rifas compradas.`
 }
 // faz todo o processo interno de registro.
 
-const nodeLis = document.querySelectorAll('li')
-nodeLis.forEach((li) => {
-    alert("li")
-})
-
 function excluir (){
-    const lis = document.querySelectorAll('li')
-    alert(lis.length)
-    lis.forEach((li) => {
-        li.classList.add('selecionado')
+    const nodeLis1 = document.querySelectorAll('li')
+    const nodeLis2 = nodeLis1
+    alert('selecione as rifas que deseja excluir')
+    nodeLis1.forEach((li) => {
+        li.style.display = 'none'
     })
+
+    if(exrif.value == 'excluir rifas'){
+        exrif.value = 'concluir exclusão'
+
+        nodeLis2.forEach((li) => {
+            li.style.display = 'list-item'
+            li.classList.add('selecionado')
+            li.addEventListener('click', () => {
+                if(li.classList == 'selecionado escolhido'){
+                    li.classList.remove('escolhido')
+                } else {
+                    li.classList.add('escolhido')
+                }
+            })
+        })
+    } else {
+        exrif.value = 'excluir rifas'
+        nodeLis1.forEach((li) => {
+            li.style.display = 'list-item'
+        })
+        nodeLis2 = 0
+    }
+
+    
 }
+
 function sortear (){
     const aleatorio = rifas[Math.floor(Math.random() * rifas.length)];
     alert(`O vencedor é o ${aleatorio}`)

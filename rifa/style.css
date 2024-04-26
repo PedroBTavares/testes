@@ -68,8 +68,11 @@ p{
 .selecionado:hover {
     background-color: rgb(255, 150, 150);
 }
-
+.escolhido{
+    background-color: red;
+}
 li{
     list-style-position: inside;
     border: solid 1px black;
+    margin: 5px 0;
 }

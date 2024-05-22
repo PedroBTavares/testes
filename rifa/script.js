@@ -11,6 +11,7 @@ const exrif = document.getElementById('exrif')
 
 const rifas = []
 const lis = []
+let numr = ''
 
 function adicionar (){
     if (adreg.style.display == 'none'){
@@ -47,7 +48,7 @@ function concluir (){
     let nome = document.getElementById('nome')
     let tel = document.getElementById('tel')
     let cxnumr = document.getElementById('numr')
-    let numr = Number(cxnumr.value)
+    numr = Number(cxnumr.value)
     //let serie = document.getElementById('serie')
     if (nome.value == '' || tel == 0 || numr == 0 /*&& serie.value == ''*/) {
         alert ('alguma informação não foi preenchida. Verifique o registro')
@@ -72,15 +73,6 @@ ${numr} rifas compradas.`
         lis.push(li)
         // adiciona os li ao array lis
 
-        const indiceLi = lis.indexOf(li)
-        //const rifa = rifas[]
-        const indiceRifa = rifas.length - numr //rifas.indexOf(rifa)
-        // pega os índices necessários
-
-        lis.splice(indiceLi + 1, 0, indiceRifa)
-        lis.splice(indiceLi + 2, 0, numr)
-        // adiciona o indice do valor do li que está no array rifa e o número de rifas compradas ao array de lis
-
         nome.value = ''
         tel.value = ''
         cxnumr.value = ''
@@ -100,26 +92,50 @@ function excluir (){
             li.classList.add('selecionado')
 
             function selecionar() {
-                if(li.classList == 'selecionado escolhido'){
+                if(li.classList == 'escolhido' || li.classList == 'escolhido selecionado1'){
                     li.classList.remove('escolhido')
+                    li.classList.add('selecionado')
+                    li.classList.remove('selecionado1')
                 } else {
                     li.classList.add('escolhido')
+                    li.classList.remove('selecionado')
+                    li.classList.add('selecionado1')
                 }
             }
+
             li.addEventListener('click', selecionar)
         })
     } else {
         exrif.value = 'excluir rifas'
-        
+        alert(rifas)
+        alert(lis)
         nodeLis.forEach((li) => {
+            if(li.classList == 'escolhido selecionado1'){
+                const indiceLi = lis.indexOf(li)
+                const indiceRifa = rifas.length - numr
+                // pega os índices necessários
+        
+                lis.splice(indiceLi + 1, 0, indiceRifa)
+                lis.splice(indiceLi + 2, 0, numr)
+                // adiciona o indice do valor do li que está no array rifa e o número de rifas compradas ao array de lis        
+
+                rifas.splice(lis[lis.indexOf(li) + 1], lis[lis.indexOf(li) + 2])
+                lis.splice(lis.indexOf(li), 3)
+                li.remove()
+                alert(rifas)
+                alert(lis)
+            }
+
             li.classList.remove('selecionado')
             li.classList.remove('escolhido')
-            //li.removeEventListener('click', selecionar())
+        })
+        nodeLis.forEach((li) => {
+            li.removeEventListener('click', selecionar)
+            // a função não está sendo encontrada
         })
     }
-
-    
 }
+// exclui a rifa internamente e visualmente
 
 function sortear (){
     const aleatorio = rifas[Math.floor(Math.random() * rifas.length)];

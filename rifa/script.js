@@ -81,6 +81,8 @@ ${numr} rifas compradas.`
 }
 // faz todo o processo interno de registro.
 
+const selecionar = []
+
 function excluir (){
     const nodeLis = document.querySelectorAll('li')
     alert('selecione as rifas que deseja excluir')
@@ -91,7 +93,7 @@ function excluir (){
         nodeLis.forEach((li) => {
             li.classList.add('selecionado')
 
-            function selecionar() {
+            selecionar.push (() => {
                 if(li.classList == 'escolhido' || li.classList == 'escolhido selecionado1'){
                     li.classList.remove('escolhido')
                     li.classList.add('selecionado')
@@ -101,9 +103,9 @@ function excluir (){
                     li.classList.remove('selecionado')
                     li.classList.add('selecionado1')
                 }
-            }
+            })
 
-            li.addEventListener('click', selecionar)
+            li.addEventListener('click', selecionar[0])
         })
     } else {
         exrif.value = 'excluir rifas'
@@ -130,8 +132,7 @@ function excluir (){
             li.classList.remove('escolhido')
         })
         nodeLis.forEach((li) => {
-            li.removeEventListener('click', selecionar)
-            // a função não está sendo encontrada
+            li.removeEventListener('click', selecionar[0])
         })
     }
 }

@@ -10,51 +10,24 @@ tdAll.forEach((td) => {
         if(input == 'excluir'){
             txtvisor.value = txtvisor.value.slice(0, txtvisor.value.length -1)
         } else if (input == '=') {
-            const adi = []
-            const sub = []
-            const mul = []
-            const div = []
-            for(i = 0; i < txtvisor.length; i++){
-                adi.push(txtvisor.value.indexOf('+', i))
-                sub.push(txtvisor.value.indexOf('-', i))
-                mul.push(txtvisor.value.indexOf('x', i))
-                div.push(txtvisor.value.indexOf(':', i))
-                alert(adi + 'a')
-                if (adi[adi.length - 2] == adi[adi.length - 1]){
-                    adi.pop()
-                }
-                alert(adi + 'b')
-                if (sub[sub.length - 2] == sub[sub.length - 1]){
-                    sub.pop()
-                }
-                if (mul[mul.length - 2] == mul[mul.length - 1]){
-                    mul.pop()
-                }
-                if (div[div.length - 2] == div[div.length - 1]){
-                    div.pop()
+            let condição = true
+            for (pos = 0; pos < txtvisor.value.length; pos++){
+                if(condição == true) {
+                    if (txtvisor.value[pos] == '1' || txtvisor.value[pos] == '2' || txtvisor.value[pos] == '3' || txtvisor.value[pos] == '4' || txtvisor.value[pos] == '5' || txtvisor.value[pos] == '6' || txtvisor.value[pos] == '7' || txtvisor.value[pos] == '8' || txtvisor.value[pos] == '9' || txtvisor.value[pos] == '0' || txtvisor.value[pos] == '+' || txtvisor.value[pos] == '-' || txtvisor.value[pos] == '*' || txtvisor.value[pos] == '/' || txtvisor.value[pos] == '(' || txtvisor.value[pos] == ')') {
+                        condição = true
+                    } else {
+                        condição = false
+                    }
                 }
             }
-            alert(adi + 'c')
-
-            if(txtvisor.value == ''){
-                alert('Nenhum número foi inserido.')
-            } else if (adi.length == 0 && sub.length == 0 && mul.length == 0 && div.length == 0) {
-                alert('Não há nenhuma operação.')
+            if (!condição) {
+                alert('Use somente os dígitos que estão no teclado e os parenteses')
             } else {
-
+                const res = new Function(`return ${txtvisor.value}`)
+                txtvisor.value = res()
             }
         } else {
             txtvisor.value += input
         }
     })
 })
-
-const string = 'a1a2a3a4a'
-const cString = []
-for(i = 0; i < string.length; i++){
-    cString.push(string.indexOf('a', i))
-    if(cString[cString.length-2] == cString[cString.length-1]){
-        cString.pop()
-    }
-}
-alert(cString)

@@ -31,13 +31,15 @@ main{
     height: 15%;
     background-color: rgb(125, 200, 200);
 }
-#visor output{
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translate(0, -50%);
+#visor input{
+    width: 99%;
+    height: 100%;
 
     font-size: 2em;
+    text-align: right;
+
+    background-color: transparent;
+    border: transparent;
 }
 
 #teclado{

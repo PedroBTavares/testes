@@ -70,14 +70,15 @@ p{
 .selecionado:hover {
     background-color: rgb(255, 150, 150);
 }
-.selecionado1:hover{
-    background-color: rgb(255, 81, 81);
-}
 .escolhido{
     background-color: red;
 }
+.escolhido:hover{
+    background-color: rgb(255, 81, 81);
+}
 li{
     display: block;
+    padding: 5px;
     border: solid 1px black;
     margin: 5px 0;
 }

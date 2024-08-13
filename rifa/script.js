@@ -1,39 +1,65 @@
-const ad = document.getElementById('ad')
-const ex = document.getElementById('ex')
-// botões.
-
 const adreg = document.getElementById('adreg')
 adreg.style.display = 'none'
 const adrif = document.getElementById('adrif')
 adrif.style.display = 'none'
-const exrif = document.getElementById('exrif')
-// conteúdo dos botões.
-
 const rifas = []
-const lis = []
-let numr = ''
+const guia = []
 
-function adicionar (){
-    if (adreg.style.display == 'none'){
+function adicionar(){
+    const ad = document.getElementById('ad')
+    if(adreg.style.display == 'none'){
         adreg.style.display = 'block'
-        ad.value = 'Cancelar'
+        ad.value = 'Fechar'
     } else {
         adreg.style.display = 'none'
         ad.value = 'Adicionar'
-        let nome = document.getElementById('nome')
-        let tel = document.getElementById('tel')
-        let cxnumr = document.getElementById('numr')
-        //let serie = document.getElementById('serie')
-        nome.value = ''
-        tel.value = ''
-        cxnumr.value = NaN
-        //serie.value = ''
-        adreg.style.display = 'none'
+
     }
 }
-// expõe e esconde as ferramentas para registro de rifas.
 
-function exibir (){
+function concluir(){
+    let nome = document.getElementById('nome')
+    let tel = document.getElementById('tel')
+    let cxnumr = document.getElementById('numr')
+    const numr = Number(cxnumr.value)
+
+    if (nome.value == '' || tel.value == '' || numr == 0) {
+        alert ('alguma informação não foi preenchida. Verifique o registro')
+    } else {
+        for(i = 0; i < numr; i++){
+            rifas.push(
+`vencedor: ${nome.value}
+telefone: ${tel.value}`
+            )
+        }
+
+        const li = document.createElement('li')
+        li.innerText =
+`Comprador: ${nome.value}
+Telefone: ${tel.value}
+Número de rifas compradas: ${numr}`
+        adrif.appendChild(li)
+
+            guia.push(
+`Comprador: ${nome.value}
+Telefone: ${tel.value}
+Número de rifas compradas: ${numr}`
+            )
+            guia.push(
+`vencedor: ${nome.value}
+telefone: ${tel.value}`
+            )
+            guia.push(numr)
+
+        nome.value = ''
+        tel.value = ''
+        cxnumr.value = ''
+    }
+}
+
+function exibir(){
+    const ex = document.getElementById('ex')
+
     if (adrif.style.display == 'none'){
         ex.value = 'Esconder rifas vendidas'
         adrif.style.display = 'block'
@@ -42,104 +68,47 @@ function exibir (){
         adrif.style.display = 'none'
     }
 }
-// expõe e esconde as rifas vendidas.
 
-function concluir (){
-    let nome = document.getElementById('nome')
-    let tel = document.getElementById('tel')
-    let cxnumr = document.getElementById('numr')
-    numr = Number(cxnumr.value)
-    //let serie = document.getElementById('serie')
-    if (nome.value == '' || tel == 0 || numr == 0 /*&& serie.value == ''*/) {
-        alert ('alguma informação não foi preenchida. Verifique o registro')
-    } else {
-        adreg.style.display = 'none'
-        ad.value = 'Adicionar'
+function excluir(){
+    const lis = document.querySelectorAll('li')
+    const exrif = document.getElementById('exrif')
 
-        for (i = 0; i < numr; i++) {
-            rifas.push(
-`comprador: ${nome.value}
-telefone: ${tel.value}`
-        )
-        }
-        const li = document.createElement('li')
-        li.innerText = `Comprador: ${nome.value}
-Telefone: ${tel.value}
-${numr} rifas compradas.`
-        adrif.appendChild(li)
-        adrif.classList.add('li')
-        //adiciona um li
-
-        lis.push(li)
-        // adiciona os li ao array lis
-
-        nome.value = ''
-        tel.value = ''
-        cxnumr.value = ''
-        //serie.value = ''
-    }
-}
-// faz todo o processo interno de registro.
-
-const selecionar = []
-
-function excluir (){
-    const nodeLis = document.querySelectorAll('li')
-    alert('selecione as rifas que deseja excluir')
-
-    if(exrif.value == 'excluir rifas'){
+    if (exrif.value == 'excluir rifas'){
         exrif.value = 'concluir exclusão'
 
-        nodeLis.forEach((li) => {
+        lis.forEach(li => {
+            li.addEventListener('click', selecionar)
             li.classList.add('selecionado')
-
-            selecionar.push (() => {
-                if(li.classList == 'escolhido' || li.classList == 'escolhido selecionado1'){
-                    li.classList.remove('escolhido')
-                    li.classList.add('selecionado')
-                    li.classList.remove('selecionado1')
-                } else {
-                    li.classList.add('escolhido')
-                    li.classList.remove('selecionado')
-                    li.classList.add('selecionado1')
-                }
-            })
-
-            li.addEventListener('click', selecionar[0])
         })
     } else {
         exrif.value = 'excluir rifas'
-        alert(rifas)
-        alert(lis)
-        nodeLis.forEach((li) => {
-            if(li.classList == 'escolhido selecionado1'){
-                const indiceLi = lis.indexOf(li)
-                const indiceRifa = rifas.length - numr
-                // pega os índices necessários
-        
-                lis.splice(indiceLi + 1, 0, indiceRifa)
-                lis.splice(indiceLi + 2, 0, numr)
-                // adiciona o indice do valor do li que está no array rifa e o número de rifas compradas ao array de lis        
 
-                rifas.splice(lis[lis.indexOf(li) + 1], lis[lis.indexOf(li) + 2])
-                lis.splice(lis.indexOf(li), 3)
-                li.remove()
-                alert(rifas)
-                alert(lis)
-            }
-
+        lis.forEach(li => {
+            li.removeEventListener('click', selecionar)
             li.classList.remove('selecionado')
-            li.classList.remove('escolhido')
-        })
-        nodeLis.forEach((li) => {
-            li.removeEventListener('click', selecionar[0])
+
+            if(li.classList == 'escolhido'){
+                const indiceG = guia.indexOf(li.innerText)
+                const indiceR = rifas.indexOf(guia[indiceG +1])
+                rifas.splice(indiceR, guia[indiceG + 2])
+                guia.splice(indiceG, 3)
+                li.remove()
+            }
         })
     }
 }
-// exclui a rifa internamente e visualmente
 
-function sortear (){
+function selecionar(){
+    if(this.classList == 'escolhido'){
+        this.classList.remove('escolhido')
+        this.classList.add('selecionado')
+    } else {
+        this.classList.add('escolhido')
+        this.classList.remove('selecionado')
+    }
+}
+
+function sortear(){
     const aleatorio = rifas[Math.floor(Math.random() * rifas.length)];
     alert(`O vencedor é o ${aleatorio}`)
 }
-// sorteia o vencedor

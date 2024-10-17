@@ -11,33 +11,36 @@
 <body>
     <header>
         <h1>Anotações</h1>
-        <p><button>+</button> Adicionar nova área de tarefas</p>
-        <nav></nav>
+        <p><button onclick="mostrarAdArea()">+</button> Adicionar nova área de tarefas</p>
     </header>
+    <nav id="areas"></nav>
+
+
     <main>
-        <section id="principal">
-            <p>A</p>
-            <p>A</p>
-            <p>A</p>
-            <p>A</p>
-            <p>A</p>
-        </section>
-        <section id="ad-area">
-            <h1>Preencha o espaço</h1>
+        <section>
+            <h2 id="titulo-area"></h2>
 
-            <p>
-                <label for="titulo">nome do campo de anotações:</label>
-                <input type="text" name="titulo" id="titulo">
-            </p>
-            <p>
-                <button style="background-color: green;">confirmar inserção</button>
-                <button style="background-color: red;">cancelar</button>
-            </p>
-
+            <div class="itens">
+                <p id="li-fixo"><button onclick="adItem()">+</button> Adicionar nova tarefa</p>
+            </div>
         </section>
+
+        <p id="aviso">Nenhuma área foi aberta.</p>
     </main>
 
 
+    <aside id="cx-ad-area">
+        <h1>Preencha o espaço</h1>
+
+        <p>
+            <label for="titulo">nome do campo de anotações:</label>
+            <input type="text" name="titulo" id="titulo">
+        </p>
+        <p>
+            <button style="background-color: green;" onclick="adArea()">confirmar inserção</button>
+            <button style="background-color: red;" onclick="escAdArea()">cancelar</button>
+        </p>
+    </aside>
 
     <script src="script.js"></script>
 </body>
